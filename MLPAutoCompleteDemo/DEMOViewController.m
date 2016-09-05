@@ -55,7 +55,8 @@
     //[self.autocompleteTextField setBorderStyle:UITextBorderStyleBezel];
     //[self.autocompleteTextField setBorderStyle:UITextBorderStyleLine];
     //[self.autocompleteTextField setBorderStyle:UITextBorderStyleNone];
-    [self.autocompleteTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    //[self.autocompleteTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    self.autocompleteTextField.layer.cornerRadius = 5;
     
 
     //[self.autocompleteTextField setShowAutoCompleteTableWhenEditingBegins:YES];

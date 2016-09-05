@@ -11,7 +11,7 @@
 
 @class DEMODataSource;
 @class MLPAutoCompleteTextField;
-@interface DEMOViewController : UIViewController <UITextFieldDelegate, MLPAutoCompleteTextFieldDelegate>
+@interface DEMOViewController : UIViewController <UITextViewDelegate, MLPAutoCompleteTextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet DEMODataSource *autocompleteDataSource;
 @property (weak) IBOutlet MLPAutoCompleteTextField *autocompleteTextField;

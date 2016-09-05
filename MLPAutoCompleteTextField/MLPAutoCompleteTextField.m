@@ -113,7 +113,7 @@ static NSString *kDefaultAutoCompleteCellIdentifier = @"_DefaultAutoCompleteCell
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self styleAutoCompleteTableForBorderStyle:self.borderStyle];
+    //[self styleAutoCompleteTableForBorderStyle:self.borderStyle];
 }
 
 #pragma mark - Notifications and KVO
@@ -139,9 +139,10 @@ static NSString *kDefaultAutoCompleteCellIdentifier = @"_DefaultAutoCompleteCell
               options:NSKeyValueObservingOptionNew context:nil];
     
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textFieldDidChangeWithNotification:)
-                                                 name:UITextFieldTextDidChangeNotification object:self];
+                                                 name:UITextViewTextDidChangeNotification object:self];
 }
 
 - (void)stopObservingKeyPathsAndNotifications
@@ -158,7 +159,7 @@ static NSString *kDefaultAutoCompleteCellIdentifier = @"_DefaultAutoCompleteCell
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:kBorderStyleKeyPath]) {
-        [self styleAutoCompleteTableForBorderStyle:self.borderStyle];
+        //[self styleAutoCompleteTableForBorderStyle:self.borderStyle];
     } else if ([keyPath isEqualToString:kAutoCompleteTableViewHiddenKeyPath]) {
         if(self.autoCompleteTableView.hidden){
             [self closeAutoCompleteTableView];
@@ -166,7 +167,7 @@ static NSString *kDefaultAutoCompleteCellIdentifier = @"_DefaultAutoCompleteCell
             [self.autoCompleteTableView reloadData];
         }
     } else if ([keyPath isEqualToString:kBackgroundColorKeyPath]){
-        [self styleAutoCompleteTableForBorderStyle:self.borderStyle];
+        //[self styleAutoCompleteTableForBorderStyle:self.borderStyle];
     } else if ([keyPath isEqualToString:kKeyboardAccessoryInputKeyPath]){
         if(self.autoCompleteTableAppearsAsKeyboardAccessory){
             [self setAutoCompleteTableForKeyboardAppearance];
@@ -363,6 +364,13 @@ withAutoCompleteString:(NSString *)string
 
 - (void)textFieldDidChangeWithNotification:(NSNotification *)aNotification
 {
+    CGFloat fontHeight = (self.font.ascender - self.font.descender) + 1;
+    
+    CGRect newTextFrame = self.frame;
+    newTextFrame.size = self.contentSize;
+    newTextFrame.size.height = newTextFrame.size.height + fontHeight;
+    self.frame = newTextFrame;
+    
     if(aNotification.object == self){
         [self reloadData];
     }
