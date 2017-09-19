@@ -507,7 +507,7 @@ withAutoCompleteString:(NSString *)string
     [self setShowTextFieldDropShadowWhenAutoCompleteTableIsOpen:YES];
     [self setShouldResignFirstResponderFromKeyboardAfterSelectionOfAutoCompleteRows:YES];
     [self setAutoCompleteRowHeight:40];
-    [self setAutoCompleteFontSize:13];
+    [self setAutoCompleteFontSize:15];
     [self setMaximumNumberOfAutoCompleteRows:3];
     [self setPartOfAutoCompleteRowHeightToCut:0.5f];
     
